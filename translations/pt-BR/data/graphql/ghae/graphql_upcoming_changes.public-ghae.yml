@@ -1,7 +1,7 @@
 ---
 upcoming_changes:
   - 
-    location: Migration.uploadUrlTemplate
+    location: LegacyMigration.uploadUrlTemplate
     description: '`uploadUrlTemplate` será removido. Use `uploadUrl` em vez disso.'
     reason: '''uploadUrlTemplate'' está sendo removido porque não é uma URL padrão e adiciona um passo extra do usuário.'
     date: '2019-04-01T00:00:00+00:00'
@@ -112,3 +112,10 @@ upcoming_changes:
     date: '2021-01-01T00:00:00+00:00'
     criticality: breaking
     owner: nplasterer
+  - 
+    location: PackageType.DOCKER
+    description: '`DOCKER` will be removed.'
+    reason: DOCKER will be removed from this enum as this type will be migrated to only be used by the Packages REST API.
+    date: '2021-06-21'
+    criticality: breaking
+    owner: reybard

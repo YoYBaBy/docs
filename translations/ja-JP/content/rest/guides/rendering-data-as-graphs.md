@@ -8,6 +8,8 @@ versions:
   free-pro-team: '*'
   enterprise-server: '*'
   github-ae: '*'
+topics:
+  - API
 ---
  
 
@@ -223,7 +225,7 @@ erb :lang_freq, :locals => { :languages => languages.to_json}
 
 さて、ここで本当のことを言いましょう。リポジトリの`language`属性が識別するのは、「主な」言語として定義されたものだけです。 つまり、複数の言語が混ざったリポジトリでは、コードのバイト数が最も多い言語が主言語とみなされます。
 
-いくつかのAPI呼び出しを組み合わせて、コード全体でどの言語のバイト数が最も多いかを_厳密に_表してみましょう。 コード言語のサイズを視覚化する方法としては、単純な数よりも[ツリーマップ][D3 treemap]を使った方が見栄えがいいでしょう。 次のようなオブジェクトの配列を構築する必要があります。
+いくつかのAPI呼び出しを組み合わせて、コード全体でどの言語のバイト数が最も多いかを_厳密に_表してみましょう。 コーディングに使われている言語のサイズを視覚化する方法としては、単純な数よりも[ツリーマップ][D3 treemap]を使った方が見栄えがいいでしょう。 次のようなオブジェクトの配列を構築する必要があります。
 
 ``` json
 [ { "name": "language1", "size": 100},
@@ -232,7 +234,7 @@ erb :lang_freq, :locals => { :languages => languages.to_json}
 ]
 ```
 
-すでに上記でリポジトリのリストを取得しているので、それぞれを調べて、[言語をリスト化するAPIメソッド][language API]を呼びましょう。
+すでに上記でリポジトリのリストを取得しているので、それぞれを調べて、[言語をリスト化するAPIメソッド][language API]を呼び出しましょう。
 
 ``` ruby
 repos.each do |repo|
@@ -241,7 +243,7 @@ repos.each do |repo|
 end
 ```
 
-From there, we'll cumulatively add each language found to a list of languages:
+そこから、見つかった各言語を言語のリストに次々に追加していきます。
 
 ``` ruby
 repo_langs.each do |lang, count|
@@ -332,8 +334,8 @@ erb :lang_freq, :locals => { :languages => languages.to_json, :language_byte_cou
 [Octokit]: https://github.com/octokit/octokit.rb
 [Octokit]: https://github.com/octokit/octokit.rb
 [D3 mortals]: http://www.recursion.org/d3-for-mere-mortals/
-[D3 treemap]: http://bl.ocks.org/mbostock/4063582
-[language API]: /v3/repos/#list-repository-languages
-[language API]: /v3/repos/#list-repository-languages
+[D3 treemap]: https://www.d3-graph-gallery.com/treemap.html
+[language API]: /rest/reference/repos#list-repository-languages
+[language API]: /rest/reference/repos#list-repository-languages
 [platform samples]: https://github.com/github/platform-samples/tree/master/api/ruby/rendering-data-as-graphs
 [new oauth application]: https://github.com/settings/applications/new
